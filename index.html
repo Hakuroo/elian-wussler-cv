@@ -249,6 +249,7 @@
             color: var(--header-text);
         }
         .contact-item { word-wrap: break-word; }
+        .online-cv-link { font-weight: 700; }
 
         .controls-panel {
             margin-top: 1.5rem;
@@ -592,64 +593,365 @@
             .qa-item { width: 100%; text-align: left; }
         }
 
-        /* --- PRINT STYLES FOR 1-PAGE A4 & ATS OPTIMIZATION --- */
-        @page { size: A4; margin: 10mm; }
+        /* --- PRINT STYLES FOR CURATED 1-PAGE A4 PDF --- */
+        @page {
+            size: A4;
+            margin: 8mm;
+        }
 
         @media print {
-            body { 
-                background: #fff !important; 
-                color: #000 !important; 
-                padding: 0 !important; 
-                margin: 0 !important;
-                font-family: 'Inter', sans-serif !important; 
-                font-size: 9.5pt !important;
-                line-height: 1.35 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+            body,
+            body.recruiter-view,
+            body.creative-view {
+                --page-bg: #ffffff;
+                --surface-bg: #ffffff;
+                --header-bg: #050505;
+                --header-text: #ffffff;
+                --text-primary: #050505;
+                --text-secondary: #171717;
+                --border-color: #050505;
+                --accent-color: #050505;
+                --card-bg: #f5f5f2;
+                --tag-bg: #ffffff;
+                --tag-border: #050505;
+                --font-body-current: 'Inter', system-ui, -apple-system, sans-serif;
+
+                background: #ffffff;
+                color: #050505;
+                display: block;
+                min-height: auto;
+                padding: 0;
+                margin: 0;
+                overflow: visible;
+                position: static;
+                font-family: var(--font-body-current);
+                font-size: 7.6pt;
+                line-height: 1.22;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
-            
-            * { color: #000 !important; box-shadow: none !important; text-shadow: none !important; background: transparent !important; }
 
-            .resume-wrapper { width: 100% !important; max-width: none !important; border: none !important; margin: 0 !important; }
+            body * {
+                text-shadow: none;
+                transition: none;
+                animation: none;
+            }
 
-            .resume-header { background: #fff !important; color: #000 !important; border-bottom: 2px solid #000 !important; padding: 0 0 10px 0 !important; margin-bottom: 15px !important; }
-            .profile-name { font-size: 24pt !important; margin-bottom: 2px !important; }
-            .profile-title { font-size: 10pt !important; margin-bottom: 10px !important; }
-            .contact-grid { gap: 8px !important; font-size: 8pt !important; }
-            
-            .no-print, .controls-panel, .control-microcopy, .creative-mode-badge, .qa-strip, .coded-badge, 
-            .workflow-badge, .project-links, .control-note, #creative-bg-canvas, .tag::after { display: none !important; }
+            .no-print,
+            .controls-panel,
+            .control-microcopy,
+            .creative-mode-badge,
+            #boot-sequence,
+            #creative-bg-canvas,
+            .tag::after {
+                display: none !important;
+            }
 
-            .resume-body { display: grid !important; grid-template-columns: 65% 33% !important; gap: 2% !important; }
-            .main-content, .sidebar { padding: 0 !important; border: none !important; }
+            a {
+                color: inherit;
+                text-decoration: none;
+                border-bottom: 0.45pt solid currentColor;
+            }
 
-            .section { margin-bottom: 15px !important; break-inside: avoid; page-break-inside: avoid; }
-            .section-title { font-size: 10pt !important; margin-bottom: 8px !important; padding-bottom: 2px !important; border-bottom: 1px solid #000 !important; }
+            .resume-wrapper,
+            body.creative-view .resume-wrapper {
+                width: calc(100% - 3pt);
+                max-width: none;
+                margin: 0;
+                background: #ffffff;
+                border: 1.35pt solid #050505;
+                box-shadow: 3pt 3pt 0 #050505;
+                backdrop-filter: none;
+            }
 
-            .text-body { font-size: 9.5pt !important; }
-            .experience-item, .education-item, .project-card { margin-bottom: 10px !important; break-inside: avoid; }
-            .item-header { margin-bottom: 2px !important; }
-            .item-title { font-size: 10.5pt !important; }
-            .item-subtitle { font-size: 8.5pt !important; margin-bottom: 4px !important; }
-            
-            .item-date { background: #000 !important; color: #fff !important; font-size: 7.5pt !important; padding: 2px 4px !important; margin-bottom: 3px !important; display: inline-block !important; border: none !important; }
+            .resume-header {
+                background: #050505;
+                color: #ffffff;
+                padding: 6mm 5.5mm 4.5mm;
+                border-bottom: 1.35pt solid #050505;
+            }
 
-            .bullet-list li { font-size: 9pt !important; margin-bottom: 3px !important; padding-left: 12px !important; }
-            .bullet-list li::before { left: 0; font-size: 9pt !important; }
+            .resume-header a,
+            body.creative-view .resume-header a {
+                color: #ffffff;
+            }
 
-            .tag-group { gap: 4px !important; }
-            .tag { border: 1px solid #000 !important; font-size: 7pt !important; padding: 2px 4px !important; display: inline-block !important; }
+            .profile-name {
+                font-size: 23pt;
+                line-height: 0.9;
+                margin-bottom: 2pt;
+                letter-spacing: 0;
+            }
 
-            .project-grid { display: flex !important; flex-direction: column !important; gap: 8px !important; }
-            .project-card { border: none !important; padding: 0 !important; }
-            .project-card-title { font-size: 9pt !important; margin-bottom: 2px !important; }
-            .project-card-text { font-size: 8.5pt !important; margin-bottom: 0 !important; }
+            .profile-title {
+                color: #ffffff;
+                font-size: 8.2pt;
+                line-height: 1.15;
+                margin-bottom: 3.2pt;
+            }
 
-            .list-item { margin-bottom: 6px !important; border-bottom: none !important; padding-bottom: 0 !important; }
-            .list-item-title { font-size: 9pt !important; }
-            .list-item-meta { font-size: 7.5pt !important; margin-top: 0 !important; }
+            .coded-badge {
+                display: none;
+            }
 
-            a { color: #000 !important; text-decoration: none !important; border-bottom: none !important; }
+            .contact-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2.2pt 6pt;
+                color: #ffffff;
+                font-size: 6.25pt;
+                line-height: 1.1;
+            }
+
+            .contact-item {
+                white-space: nowrap;
+            }
+
+            .online-cv-link {
+                background: #ffffff;
+                color: #050505;
+                border: 0.65pt solid #ffffff;
+                padding: 1pt 2.4pt;
+            }
+
+            .resume-header .online-cv-link,
+            body.creative-view .resume-header .online-cv-link {
+                color: #050505;
+            }
+
+            .qa-strip {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2pt;
+                margin-top: 3pt;
+                color: #ffffff;
+                font-size: 5.35pt;
+                line-height: 1;
+                opacity: 1;
+            }
+
+            .qa-item {
+                padding: 1pt 2.2pt;
+                border: 0.45pt solid rgba(255, 255, 255, 0.78);
+            }
+
+            .resume-body {
+                display: grid;
+                grid-template-columns: 64% 36%;
+                align-items: start;
+            }
+
+            .main-content {
+                padding: 5mm 4.8mm 4.4mm;
+                border-right: 1.2pt solid #050505;
+            }
+
+            .sidebar {
+                padding: 5mm 4.2mm 4.4mm;
+                background: #f5f5f2;
+            }
+
+            .section {
+                margin-bottom: 4.2mm;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .sidebar .section {
+                margin-bottom: 3.4mm;
+            }
+
+            .section:last-child {
+                margin-bottom: 0;
+            }
+
+            .section-title {
+                display: flex;
+                justify-content: flex-start;
+                gap: 3pt;
+                color: #050505;
+                border-bottom: 0.8pt solid #050505;
+                font-size: 7pt;
+                line-height: 1;
+                letter-spacing: 0;
+                margin-bottom: 2mm;
+                padding-bottom: 1mm;
+            }
+
+            .section-title span {
+                opacity: 1;
+            }
+
+            .text-body {
+                color: #171717;
+                font-size: 7.25pt;
+                line-height: 1.25;
+            }
+
+            .workflow-badge {
+                display: inline-block;
+                color: #050505;
+                border: 0.7pt solid #050505;
+                background: #ffffff;
+                font-size: 6.1pt;
+                line-height: 1.1;
+                padding: 1.2pt 2.5pt;
+                margin-top: 2pt;
+                letter-spacing: 0;
+            }
+
+            .experience-item,
+            .education-item {
+                margin-bottom: 4mm;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .item-header {
+                margin-bottom: 1pt;
+            }
+
+            .item-date {
+                display: inline-block;
+                background: #050505;
+                color: #ffffff;
+                border: 0;
+                font-size: 6pt;
+                line-height: 1;
+                padding: 1.4pt 2.8pt;
+                margin-bottom: 1.2pt;
+            }
+
+            .item-title,
+            body.creative-view .item-title {
+                color: #050505;
+                font-size: 8.6pt;
+                line-height: 1.08;
+            }
+
+            .item-subtitle {
+                color: #050505;
+                font-size: 6.75pt;
+                line-height: 1.12;
+                margin-bottom: 1.2mm;
+            }
+
+            .bullet-list li {
+                color: #171717;
+                font-size: 6.8pt;
+                line-height: 1.16;
+                margin-bottom: 0.7mm;
+                padding-left: 7pt;
+            }
+
+            .bullet-list li::before {
+                left: 0;
+                color: #050505;
+                font-size: 6.8pt;
+            }
+
+            [data-i18n="projectDemosIntro"],
+            .control-note {
+                display: none;
+            }
+
+            .project-grid {
+                display: grid;
+                gap: 1.8mm;
+            }
+
+            .project-card,
+            body.creative-view .project-card {
+                border: 0.8pt solid #050505;
+                background: #ffffff;
+                padding: 2.1mm;
+                margin-bottom: 0;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .project-card-title,
+            body.creative-view .project-card-title {
+                display: inline;
+                color: #050505;
+                font-size: 7pt;
+                line-height: 1.15;
+                margin-bottom: 0;
+            }
+
+            .project-card-title::after {
+                content: " - ";
+                font-weight: 400;
+            }
+
+            .project-card-text {
+                display: inline;
+                color: #171717;
+                font-size: 6.65pt;
+                line-height: 1.15;
+                margin-bottom: 0;
+            }
+
+            .project-links {
+                display: inline-flex;
+                flex-wrap: wrap;
+                gap: 0;
+                margin-left: 3pt;
+                vertical-align: baseline;
+            }
+
+            .project-link,
+            body.creative-view .project-link {
+                color: #050505;
+                border: 0;
+                border-bottom: 0.45pt solid #050505;
+                padding: 0;
+                font-size: 6.1pt;
+                line-height: 1.1;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .project-link + .project-link::before {
+                content: " · ";
+                font-weight: 400;
+            }
+
+            .tag-group {
+                gap: 1.35pt;
+            }
+
+            .tag {
+                display: inline-block;
+                color: #050505;
+                background: #ffffff;
+                border: 0.55pt solid #050505;
+                font-size: 5.7pt;
+                line-height: 1.05;
+                padding: 1.2pt 2pt;
+                letter-spacing: 0;
+            }
+
+            .list-item {
+                margin-bottom: 2.2mm;
+                padding-bottom: 1.5mm;
+                border-bottom: 0.45pt dotted #050505;
+            }
+
+            .list-item-title,
+            body.creative-view .list-item-title {
+                color: #050505;
+                font-size: 7pt;
+                line-height: 1.1;
+            }
+
+            .list-item-meta {
+                color: #171717;
+                font-size: 6pt;
+                line-height: 1.08;
+                margin-top: 0.5pt;
+                letter-spacing: 0;
+            }
         }
     </style>
 </head>
@@ -678,6 +980,7 @@
             <div class="contact-item"><a href="mailto:wusslerelian@gmail.com" data-i18n="contactEmail">[ MAIL: WUSSLERELIAN@GMAIL.COM ]</a></div>
             <div class="contact-item"><a href="https://www.linkedin.com/in/elian-wussler-92088622a/" target="_blank" rel="noopener noreferrer" data-i18n="contactLinkedIn">[ IN: LINKEDIN ]</a></div>
             <div class="contact-item"><a href="https://github.com/Hakuroo" target="_blank" rel="noopener noreferrer" data-i18n="contactGitHub">[ GIT: HAKUROO ]</a></div>
+            <a class="contact-item online-cv-link" href="https://hakuroo.github.io/elian-wussler-cv/" target="_blank" rel="noopener noreferrer" data-i18n="contactOnlineCV">[ CV: ONLINE PORTFOLIO ]</a>
         </div>
 
         <div class="controls-panel no-print">
@@ -778,7 +1081,7 @@
                         <div class="project-card-title" data-i18n="project1Title">AI Ticket Triage Demo</div>
                         <p class="project-card-text" data-i18n="project1Text">Turns messy creative requests into structured Jira-style production tickets.</p>
                         <div class="project-links">
-                            <a class="project-link" href="https://hakuroo.github.io/ai-ticket-triage-demo/examples/ticket-triage.html" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkOpen">Open Demo</a>
+                            <a class="project-link" href="https://hakuroo.github.io/ai-ticket-triage-demo/examples/ticket-triage.html" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkOpen">Demo</a>
                             <a class="project-link" href="https://github.com/Hakuroo/ai-ticket-triage-demo" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkGitHub">GitHub</a>
                         </div>
                     </article>
@@ -786,7 +1089,7 @@
                         <div class="project-card-title" data-i18n="project2Title">AI Design Ops Workflow</div>
                         <p class="project-card-text" data-i18n="project2Text">Shows copy variations, QA review, delivery summary, and responsive web implementation.</p>
                         <div class="project-links">
-                            <a class="project-link" href="https://hakuroo.github.io/ai-design-ops-workflow/" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkOpen">Open Demo</a>
+                            <a class="project-link" href="https://hakuroo.github.io/ai-design-ops-workflow/" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkOpen">Demo</a>
                             <a class="project-link" href="https://github.com/Hakuroo/ai-design-ops-workflow" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkGitHub">GitHub</a>
                         </div>
                     </article>
@@ -794,7 +1097,7 @@
                         <div class="project-card-title" data-i18n="project3Title">Structured Quotation Logic Demo</div>
                         <p class="project-card-text" data-i18n="project3Text">Shows structured data logic for organizing categories, calculations, and review-ready summaries.</p>
                         <div class="project-links">
-                            <a class="project-link" href="https://hakuroo.github.io/supabase-quotation-database-demo/examples/quotation-demo.html" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkOpen">Open Demo</a>
+                            <a class="project-link" href="https://hakuroo.github.io/supabase-quotation-database-demo/examples/quotation-demo.html" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkOpen">Demo</a>
                             <a class="project-link" href="https://github.com/Hakuroo/supabase-quotation-database-demo" target="_blank" rel="noopener noreferrer" data-i18n="projectLinkGitHub">GitHub</a>
                         </div>
                     </article>
@@ -823,8 +1126,8 @@
             <section class="section">
                 <h3 class="section-title"><span>//</span> <span data-i18n="sectionAIPrompting">AI & Prompting</span></h3>
                 <div class="tag-group">
-                    <span class="tag" tabindex="0" role="button" data-i18n="tagChatGPT" data-i18n-tooltip="tooltipChatGPT">ChatGPT/Chatbox</span>
-                    <span class="tag" tabindex="0" role="button" data-i18n="tagClaude" data-i18n-tooltip="tooltipClaude">Claude/Cursor/Codex</span>
+                    <span class="tag" tabindex="0" role="button" data-i18n="tagChatGPT" data-i18n-tooltip="tooltipChatGPT">AI Chatbots</span>
+                    <span class="tag" tabindex="0" role="button" data-i18n="tagClaude" data-i18n-tooltip="tooltipClaude">Cursor / Codex</span>
                     <span class="tag" tabindex="0" role="button" data-i18n="tagLLM" data-i18n-tooltip="tooltipLLM">LLM Prompting</span>
                     <span class="tag" tabindex="0" role="button" data-i18n="tagAgents" data-i18n-tooltip="tooltipAgents">AI Agents</span>
                     <span class="tag" tabindex="0" role="button" data-i18n="tagDify" data-i18n-tooltip="tooltipDify">Dify.ai</span>
@@ -1029,6 +1332,7 @@
             contactEmail: '[ MAIL: WUSSLERELIAN@GMAIL.COM ]',
             contactLinkedIn: '[ IN: LINKEDIN ]',
             contactGitHub: '[ GIT: HAKUROO ]',
+            contactOnlineCV: '[ CV: ONLINE PORTFOLIO ]',
             viewModeLabel: 'VIEW MODE',
             recruiterViewLabel: 'Recruiter View',
             creativeViewLabel: 'Creative View',
@@ -1065,7 +1369,7 @@
             experience2Bullet6: 'Helped review details, structure information, and keep outbound communication clear and organized.',
             sectionEducation: 'Education',
             educationTitle: 'B.S. Artificial Intelligence Engineering',
-            educationBody: 'Currently in second year. Focus on algorithms, structured logic, and AI modeling.',
+            educationBody: 'Currently in second year. Focus on algorithms, structured logic, data foundations, and applied AI concepts.',
             sectionProjectDemos: 'Project Demos',
             projectDemosIntro: 'Small coded demos built to show how I think about production workflows: turning unclear requests into structured tickets, documenting review steps, and preparing outputs for human validation.',
             project1Title: 'AI Ticket Triage Demo',
@@ -1074,7 +1378,7 @@
             project2Text: 'Shows copy variations, QA review, delivery summary, and responsive web implementation.',
             project3Title: 'Structured Quotation Logic Demo',
             project3Text: 'Shows structured data logic for organizing categories, calculations, and review-ready summaries.',
-            projectLinkOpen: 'Open Demo',
+            projectLinkOpen: 'Demo',
             projectLinkGitHub: 'GitHub',
             sectionDesignProduction: 'Design & Production',
             designNote: 'Hover or tap skills for production context.',
@@ -1087,8 +1391,8 @@
             tagConsistency: 'Brand Consistency',
             tagMockup: 'Mockup Placement',
             sectionAIPrompting: 'AI & Prompting',
-            tagChatGPT: 'ChatGPT',
-            tagClaude: 'Claude',
+            tagChatGPT: 'AI Chatbots',
+            tagClaude: 'Cursor / Codex',
             tagLLM: 'LLM Prompting',
             tagAgents: 'AI Agents',
             tagDify: 'Dify.ai',
@@ -1120,8 +1424,8 @@
             tooltipExport: 'Preparing final assets with correct settings and names.',
             tooltipConsistency: 'Keeping materials aligned with brand tone and rules.',
             tooltipMockup: 'Placing assets into mockups and layouts clearly.',
-            tooltipChatGPT: 'ChatGPT for structured prompts and content workflows.',
-            tooltipClaude: 'Claude for supporting safe wording and QA.',
+            tooltipChatGPT: 'Using AI chatbots to structure ideas, draft documentation, compare outputs, and support review workflows.',
+            tooltipClaude: 'AI coding tools used to support HTML/CSS/JS edits, debugging, refactoring, and documentation with human review.',
             tooltipLLM: 'Designing prompt flows for consistent outputs.',
             tooltipAgents: 'Using agent logic for repeatable process steps.',
             tooltipDify: 'No-code agents and workflow orchestration.',
@@ -1147,6 +1451,7 @@
             contactEmail: '[ MAIL: WUSSLERELIAN@GMAIL.COM ]',
             contactLinkedIn: '[ IN: LINKEDIN ]',
             contactGitHub: '[ GIT: HAKUROO ]',
+            contactOnlineCV: '[ CV: PORTFOLIO ONLINE ]',
             viewModeLabel: 'MODO DE VISTA',
             recruiterViewLabel: 'Vista reclutador',
             creativeViewLabel: 'Vista creativa',
@@ -1192,7 +1497,7 @@
             project2Text: 'Muestra variaciones de copy, revisión QA, resumen de entrega e implementación web responsive.',
             project3Title: 'Structured Quotation Logic Demo',
             project3Text: 'Muestra lógica de datos estructurados para organizar categorías, cálculos y resúmenes listos para revisión.',
-            projectLinkOpen: 'Abrir demo',
+            projectLinkOpen: 'Demo',
             projectLinkGitHub: 'GitHub',
             sectionDesignProduction: 'Diseño y producción',
             designNote: 'Pase el cursor o toque para ver contexto de producción.',
@@ -1205,13 +1510,13 @@
             tagConsistency: 'Consistencia de marca',
             tagMockup: 'Armado de mockups',
             sectionAIPrompting: 'IA y prompting',
-            tagChatGPT: 'ChatGPT',
-            tagClaude: 'Claude',
+            tagChatGPT: 'Chatbots de IA',
+            tagClaude: 'Cursor / Codex',
             tagLLM: 'Prompting con LLMs',
             tagAgents: 'Agentes de IA',
             tagDify: 'Dify.ai',
             tagPromptWriting: 'Escritura de prompts',
-            tagBrandSafeAI: 'Flujos de IA seguros para marca',
+            tagBrandSafeAI: 'Flujos asistidos por IA',
             tagReview: 'Revisión humana',
             sectionWebLogic: 'Web y lógica',
             tagHTML: 'HTML',
@@ -1238,8 +1543,8 @@
             tooltipExport: 'Preparar assets finales con ajustes y nombres correctos.',
             tooltipConsistency: 'Mantener materiales alineados con el tono y las reglas de la marca.',
             tooltipMockup: 'Colocar assets en mockups y layouts con claridad.',
-            tooltipChatGPT: 'ChatGPT para prompts estructurados y flujos de contenido.',
-            tooltipClaude: 'Claude para apoyar redacción segura y QA.',
+            tooltipChatGPT: 'Uso de chatbots de IA para estructurar ideas, redactar documentación, comparar salidas y apoyar flujos de revisión.',
+            tooltipClaude: 'Herramientas de código con IA usadas para apoyar cambios en HTML/CSS/JS, debugging, refactor y documentación con revisión humana.',
             tooltipLLM: 'Diseñar flujos de prompts para resultados consistentes.',
             tooltipAgents: 'Usar lógica de agentes para pasos de proceso repetibles.',
             tooltipDify: 'Agentes no-code y orquestación de flujos.',
