@@ -1,6 +1,5 @@
 # Elian Mijael Wussler — Interactive Resume
-
-Interactive HTML/CSS/JavaScript resume for a junior digital production profile focused on design operations, web implementation, QA checklists, structured documentation, and AI-assisted workflows with human review.
+A coded resume and small portfolio hub built to show how I approach digital production, web implementation, QA thinking, and AI-assisted workflow organization.
 
 ## Live Resume
 
